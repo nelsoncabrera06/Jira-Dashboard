@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jira Dashboard - Mis Issues</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Barra de navegación superior estilo Jira -->
+    <nav class="jira-navbar">
+        <div class="navbar-content">
+            <div class="navbar-left">
+                <span class="navbar-title">Nelson Cabrera Tickets</span>
+            </div>
+            <div class="navbar-right">
+                <button id="refreshBtn" class="navbar-btn">Refresh</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Assigned to Me</h1>
+        </div>
+
+        <!-- Filtros y ordenamiento -->
+        <div class="filters-container">
+            <div class="filter-group">
+                <label for="filterType">Type:</label>
+                <select id="filterType" class="filter-select">
+                    <option value="">All Types</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="filterPriority">Priority:</label>
+                <select id="filterPriority" class="filter-select">
+                    <option value="">All Priorities</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="filterStatus">Status:</label>
+                <select id="filterStatus" class="filter-select">
+                    <option value="">All Statuses</option>
+                </select>
+            </div>
+
+            <div class="filter-group filter-search">
+                <label for="filterSummary">Search Summary:</label>
+                <input type="text" id="filterSummary" class="filter-input" placeholder="Type to search...">
+            </div>
+
+            <div class="filter-group">
+                <label for="sortBy">Sort By:</label>
+                <select id="sortBy" class="filter-select">
+                    <option value="">None</option>
+                    <option value="type">Type</option>
+                    <option value="priority">Priority</option>
+                    <option value="status">Status</option>
+                    <option value="created">Created Date</option>
+                    <option value="updated">Updated Date</option>
+                </select>
+            </div>
+
+            <button id="clearFilters" class="btn-clear">Clear Filters</button>
+        </div>
+
+        <!-- Botones de control -->
+        <div class="epic-view-controls">
+            <button id="epicToggleBtn" class="epic-toggle-btn">🗂️ Organize by Epic</button>
+            <button id="saveNotesBtn" class="save-notes-btn">💾 Save Notes</button>
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Cargando issues...</p>
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            <p><span id="errorMessage"></span></p>
+        </div>
+
+        <div id="issuesContainer" class="issues-table-container">
+            <table class="issues-table">
+                <thead>
+                    <tr>
+                        <th class="col-type sortable" data-sort="type">Type <span class="sort-arrows">↑↓</span></th>
+                        <th class="col-key sortable" data-sort="key">Key <span class="sort-arrows">↑↓</span></th>
+                        <th class="col-summary sortable" data-sort="summary">Summary <span class="sort-arrows">↑↓</span></th>
+                        <th class="col-priority sortable" data-sort="priority">Priority <span class="sort-arrows">↑↓</span></th>
+                        <th class="col-created sortable" data-sort="created">Created <span class="sort-arrows">↑↓</span></th>
+                        <th class="col-updated sortable" data-sort="updated">Updated <span class="sort-arrows">↑↓</span></th>
+                        <th class="col-duedate sortable" data-sort="duedate">Due Date <span class="sort-arrows">↑↓</span></th>
+                        <th class="col-status sortable" data-sort="status">Status <span class="sort-arrows">↑↓</span></th>
+                        <th class="col-scheduled sortable" data-sort="scheduled">Scheduled <span class="sort-arrows">↑↓</span></th>
+                        <th class="col-notes">My Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="issuesTableBody">
+                    <!-- Los issues se cargarán aquí dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

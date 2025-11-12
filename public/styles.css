@@ -1,0 +1,723 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    background: #f4f5f7;
+    min-height: 100vh;
+    color: #172b4d;
+}
+
+/* Navbar estilo Jira */
+.jira-navbar {
+    background: #0747a6;
+    color: white;
+    height: 56px;
+    box-shadow: 0 1px 1px rgba(9, 30, 66, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-content {
+    max-width: 2100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.navbar-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Container */
+.container {
+    max-width: 2100px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* Page Header */
+.page-header {
+    margin-bottom: 16px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #172b4d;
+    margin: 0;
+}
+
+/* Filters Container */
+.filters-container {
+    background: white;
+    padding: 16px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 1px rgba(9, 30, 66, 0.25);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.filter-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #5e6c84;
+    text-transform: uppercase;
+}
+
+.filter-select,
+.filter-input {
+    padding: 6px 10px;
+    border: 2px solid #dfe1e6;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #172b4d;
+    background: white;
+    min-width: 150px;
+    transition: border-color 0.2s;
+}
+
+.filter-select:focus,
+.filter-input:focus {
+    outline: none;
+    border-color: #4c9aff;
+}
+
+.filter-search {
+    flex-grow: 1;
+}
+
+.filter-input {
+    width: 100%;
+}
+
+.btn-clear {
+    padding: 6px 16px;
+    background: #dfe1e6;
+    color: #42526e;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    height: 34px;
+}
+
+.btn-clear:hover {
+    background: #c1c7d0;
+}
+
+/* Loading */
+.loading {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 3px;
+}
+
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #0052cc;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error */
+.error {
+    background: #ffebe6;
+    color: #bf2600;
+    padding: 16px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    border-left: 4px solid #de350b;
+}
+
+/* Issues Table Container */
+.issues-table-container {
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(9, 30, 66, 0.25);
+    overflow: hidden;
+}
+
+/* Issues Table */
+.issues-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.issues-table thead {
+    background: #f4f5f7;
+    border-bottom: 2px solid #dfe1e6;
+}
+
+.issues-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #5e6c84;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.issues-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.issues-table th.sortable:hover {
+    background-color: #e4e5e7;
+}
+
+.issues-table th.sortable .sort-arrows {
+    opacity: 0.4;
+    font-size: 10px;
+    margin-left: 4px;
+}
+
+.issues-table th.sortable:hover .sort-arrows {
+    opacity: 0.7;
+}
+
+.issues-table th.sortable.sort-asc .sort-arrows,
+.issues-table th.sortable.sort-desc .sort-arrows {
+    opacity: 1;
+    color: #0052cc;
+    font-weight: bold;
+    font-size: 14px;
+    visibility: hidden;
+    position: relative;
+}
+
+.issues-table th.sortable.sort-asc .sort-arrows::after {
+    content: '↑';
+    visibility: visible;
+    position: absolute;
+    left: 0;
+}
+
+.issues-table th.sortable.sort-desc .sort-arrows::after {
+    content: '↓';
+    visibility: visible;
+    position: absolute;
+    left: 0;
+}
+
+.issues-table th.col-type {
+    width: 200px;
+}
+
+.issues-table th.col-key {
+    width: 220px;
+}
+
+.issues-table th.col-summary {
+    min-width: 400px;
+}
+
+.issues-table th.col-status {
+    width: 200px;
+}
+
+.issues-table th.col-priority {
+    width: 140px;
+}
+
+.issues-table th.col-created,
+.issues-table th.col-updated {
+    width: 130px;
+}
+
+.issues-table th.col-duedate {
+    width: 170px;
+}
+
+.issues-table th.col-scheduled {
+    width: 180px;
+}
+
+.issues-table th.col-notes {
+    width: 375px;
+}
+
+.issues-table tbody tr {
+    border-bottom: 1px solid #ebecf0;
+    transition: background-color 0.1s;
+}
+
+.issues-table tbody tr:hover {
+    background: #f4f5f7;
+}
+
+.issues-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.issues-table td {
+    padding: 12px 16px;
+    vertical-align: middle;
+}
+
+/* Issue Type Cell */
+.issue-type-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Issue Key */
+.issue-key-link {
+    color: #0052cc;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.issue-key-link:hover {
+    color: #0065ff;
+    text-decoration: underline;
+}
+
+/* Issue Summary */
+.issue-summary {
+    color: #172b4d;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+/* Status Colors */
+.status-todo {
+    background: #dfe1e6;
+    color: #42526e;
+}
+
+.status-inprogress {
+    background: #deebff;
+    color: #0052cc;
+}
+
+.status-relex-validation {
+    background: #e3fcef;
+    color: #00875a;
+}
+
+.status-customer-validation {
+    background: #eae6ff;
+    color: #5243aa;
+}
+
+.status-done {
+    background: #e3fcef;
+    color: #006644;
+}
+
+.status-blocked {
+    background: #ffebe6;
+    color: #bf2600;
+}
+
+.status-default {
+    background: #f4f5f7;
+    color: #5e6c84;
+}
+
+/* Priority Cell */
+.priority-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Date Cell */
+.date-cell {
+    color: #5e6c84;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.date-cell.due-soon {
+    background: #ffebe6;
+    color: #bf2600;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.date-cell.due-warning {
+    background: #fff7e6;
+    color: #172b4d;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.priority-highest {
+    color: #cd1316;
+}
+
+.priority-high {
+    color: #cd1316;
+}
+
+.priority-medium {
+    color: #f07b05;
+}
+
+.priority-low {
+    color: #2684ff;
+}
+
+.priority-lowest {
+    color: #2684ff;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 3px;
+    color: #5e6c84;
+}
+
+.empty-state p {
+    font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .issues-table th.col-created,
+    .issues-table th.col-updated {
+        width: 130px;
+        font-size: 11px;
+    }
+
+    .date-cell {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+
+    .navbar-content {
+        padding: 0 16px;
+    }
+
+    .issues-table {
+        font-size: 11px;
+    }
+
+    .issues-table th,
+    .issues-table td {
+        padding: 8px;
+    }
+
+    .col-type {
+        width: 100px;
+    }
+
+    .col-key {
+        width: 90px;
+    }
+
+    .col-status {
+        width: 100px;
+    }
+
+    .col-priority {
+        width: 90px;
+    }
+
+    .col-created,
+    .col-updated {
+        width: 100px;
+    }
+
+    .date-cell {
+        font-size: 11px;
+    }
+
+    .issue-type-cell,
+    .priority-cell {
+        font-size: 12px;
+    }
+}
+
+/* Epic View Controls */
+.epic-view-controls {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.epic-toggle-btn {
+    padding: 8px 16px;
+    background: #0052cc;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 1px 1px rgba(9, 30, 66, 0.25);
+}
+
+.epic-toggle-btn:hover {
+    background: #0065ff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(9, 30, 66, 0.25);
+}
+
+.epic-toggle-btn:active {
+    transform: translateY(0);
+}
+
+.epic-toggle-btn.active {
+    background: #00875a;
+}
+
+.epic-toggle-btn.active:hover {
+    background: #00a868;
+}
+
+/* Save Notes Button */
+.save-notes-btn {
+    padding: 8px 16px;
+    background: #00875a;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 1px 1px rgba(9, 30, 66, 0.25);
+}
+
+.save-notes-btn:hover {
+    background: #00a868;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(9, 30, 66, 0.25);
+}
+
+.save-notes-btn:active {
+    transform: translateY(0);
+}
+
+.save-notes-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Epic Row Styling */
+.issues-table tbody tr.epic-row {
+    background: #f4f5f7;
+    font-weight: 600;
+    border-left: 4px solid #6554c0;
+}
+
+.issues-table tbody tr.epic-row:hover {
+    background: #ebecf0;
+}
+
+.issues-table tbody tr.epic-row td {
+    color: #172b4d;
+}
+
+/* Child Row Styling */
+.issues-table tbody tr.child-row {
+    background: #ffffff;
+}
+
+.issues-table tbody tr.child-row:hover {
+    background: #f9f9fb;
+}
+
+.issues-table tbody tr.child-row .tree-prefix {
+    color: #5e6c84;
+    font-family: monospace;
+    font-size: 14px;
+    margin-right: 4px;
+    font-weight: 500;
+}
+
+/* No Epic Section */
+.issues-table tbody tr.no-epic-section {
+    background: #fffae6;
+    border-top: 2px solid #ff991f;
+    border-left: 4px solid #ff991f;
+}
+
+.issues-table tbody tr.no-epic-section:hover {
+    background: #fff5d6;
+}
+
+.issues-table tbody tr.no-epic-section td.no-epic-header {
+    padding: 12px 16px;
+    font-weight: 600;
+    color: #172b4d;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* Notes Input Styling */
+.note-input {
+    width: 100%;
+    padding: 6px 8px;
+    border: 2px solid #dfe1e6;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: #172b4d;
+    background: white;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.note-input:focus {
+    outline: none;
+    border-color: #4c9aff;
+    background: #f4f5f7;
+}
+
+.note-input::placeholder {
+    color: #a5adba;
+    font-style: italic;
+}
+
+/* Scheduled Input Styling */
+.scheduled-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.scheduled-input {
+    flex: 1;
+    padding: 6px 8px;
+    border: 2px solid #dfe1e6;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: #172b4d;
+    background: white;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.scheduled-input:focus {
+    outline: none;
+    border-color: #4c9aff;
+    background: #f4f5f7;
+}
+
+.scheduled-input.scheduled-soon {
+    background: #fff7e6;
+    border-color: #ffab00;
+    color: #172b4d;
+    font-weight: 600;
+}
+
+.scheduled-input.scheduled-soon:focus {
+    background: #fff0b3;
+    border-color: #ff991f;
+}
+
+.scheduled-input.scheduled-overdue {
+    background: #ffebe6;
+    border-color: #de350b;
+    color: #bf2600;
+    font-weight: 600;
+}
+
+.scheduled-input.scheduled-overdue:focus {
+    background: #ffd5cc;
+    border-color: #bf2600;
+}
+
+.scheduled-day {
+    font-size: 12px;
+    font-weight: 600;
+    color: #5e6c84;
+    text-transform: uppercase;
+    min-width: 35px;
+    text-align: center;
+}
