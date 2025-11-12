@@ -1,0 +1,16 @@
+
+# modificar en tu maquina local el archivo .env:
+
+# Configuración de Jira API
+JIRA_EMAIL=YOUR.EMAIL@blablablablabla.com
+JIRA_API_TOKEN=YOUR_TOKEN_asfausbfiuabfafhbvjkbflkjvbjkshdbvopahbdvapbca
+
+# Puerto del servidor
+PORT=3000
+
+
+# se corre desde el terminal con
+ node server.js 
+
+
+ # disfrutar
