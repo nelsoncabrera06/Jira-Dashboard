@@ -43,6 +43,11 @@ Copiar el token y pegarlo en el archivo .env
 ```bash
 npm start
 ```
+o simplemente
+```bash
+node server.js
+```
+
 
 (O para desarrollo con auto-reinicio: npm run dev)
 
