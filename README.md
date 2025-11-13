@@ -6,7 +6,7 @@ Una cuenta activa de Jira con acceso a la API
 
 **Pasos de Instalación**
 Clonar el repositorio
-git clone <url-del-repositorio>
+git clone https://github.com/nelsoncabrera06/Jira-Dashboard.git
 cd jira-dashboard
 
 **Instalar dependencias**
