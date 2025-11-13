@@ -43,3 +43,8 @@ npm start
 
 ## Acceder a la aplicación
 Abrir el navegador en: http://localhost:3000
+
+
+## ejemplo del dashboard personalizado
+
+<img width="1344" height="768" alt="gemini-difuso" src="https://github.com/user-attachments/assets/b701c03f-0f77-4173-8814-24980cb64f21" />
