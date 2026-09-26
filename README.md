@@ -1,61 +1,68 @@
-## 📋 Pasos de Instalación para el Jira Dashboard
-**Prerrequisitos**
+## 📋 Installation Steps for the Jira Dashboard
 
-Node.js (versión 14 o superior)
+**Prerequisites**
 
-npm (viene incluido con Node.js)
+- Node.js (version 14 or higher)
+- npm (bundled with Node.js)
+- An active Jira account with API access
 
-Una cuenta activa de Jira con acceso a la API
+**Installation**
 
-**Pasos de Instalación**
+Clone the repository:
 
-Clonar el repositorio
-
+```bash
 git clone https://github.com/nelsoncabrera06/Jira-Dashboard.git
-
 cd jira-dashboard
+```
 
+**Install dependencies**
 
-**Instalar dependencias**
 ```bash
 npm install
 ```
 
-**Configurar variables de entorno**
+**Configure environment variables**
 
-Modificar el archivo .env en la raíz del proyecto con el siguiente contenido:
+Copy the example environment file and fill in your credentials:
 
-JIRA_EMAIL=tu-email@company.com
+```bash
+cp .env.example .env
+```
 
-JIRA_API_TOKEN=tu-token-de-api-de-jira
+Then edit `.env` in the project root:
 
+```bash
+JIRA_EMAIL=your-email@company.com
+JIRA_API_TOKEN=your-jira-api-token
 PORT=3000
+```
 
-**Generar el token de API de Jira**
+**Generate your Jira API token**
 
-Ir a: https://id.atlassian.com/manage-profile/security/api-tokens
+Go to: https://id.atlassian.com/manage-profile/security/api-tokens
 
-Hacer clic en "Create API token"
+Click "Create API token"
 
-Copiar el token y pegarlo en el archivo .env
+Copy the token and paste it into your `.env` file
 
-**Iniciar el servidor** 
+**Start the server**
+
 ```bash
 npm start
 ```
-o simplemente
+
+or simply:
+
 ```bash
 node server.js
 ```
 
+(Or, for development with auto-restart: `npm run dev`)
 
-(O para desarrollo con auto-reinicio: npm run dev)
+**Access the application**
 
-**Acceder a la aplicación**
+Open your browser at: http://localhost:3000
 
-Abrir el navegador en: http://localhost:3000
-
-
-**Ejemplo del dashboard personalizado**
+**Custom dashboard example**
 
 <img width="1344" height="768" alt="gemini-difuso" src="https://github.com/user-attachments/assets/b701c03f-0f77-4173-8814-24980cb64f21" />
