@@ -15,5 +15,4 @@ scheduled.json
 npm-debug.log*
 
 # Sistema
-.DOSStore
 .DS_Store
