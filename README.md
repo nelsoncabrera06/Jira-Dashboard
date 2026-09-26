@@ -1,4 +1,6 @@
-## 📋 Installation Steps for the Jira Dashboard
+# Jira Dashboard
+
+## 📋 Installation Steps
 
 **Prerequisites**
 

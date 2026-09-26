@@ -1,4 +1,6 @@
-## 📋 Pasos de Instalación para el Jira Dashboard
+# Jira Dashboard
+
+## 📋 Pasos de Instalación
 **Prerrequisitos**
 
 Node.js (versión 14 o superior)
