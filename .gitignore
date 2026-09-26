@@ -1,0 +1,19 @@
+# Dependencias
+node_modules/
+
+# Secretos — NO subir
+.env
+.env.local
+.env.*.local
+
+# Datos generados en runtime
+notes.json
+scheduled.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema
+.DOSStore
+.DS_Store
